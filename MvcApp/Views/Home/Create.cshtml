@@ -1,0 +1,17 @@
+﻿@model MvcApp.Models.UchGroupe
+
+<h2>Создать учебную группу</h2>
+<h3>Учебная группа > Создать учебную группу</h3>
+<form asp-action="create" asp-controller="home">
+    <div class="form-group">
+        <label class="control-label">Преподаватель</label>
+        <select asp-for="Teacher_name" asp-items="ViewBag.TeachersList" class="form-control"></select>
+    </div>
+    <p>
+        <label asp-for="Name">Название учебной группы</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <input type="submit" value="Добавить" />
+    </p>
+</form>

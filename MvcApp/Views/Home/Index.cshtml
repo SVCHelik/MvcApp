@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MvcApp.Models.UchGroupe>
+
+<h2>Учебные группы</h2>
+<h3>Учебные группы</h3>
+<table class="table">
+    <tr><th>Название группы</th><th>Имя преподавателя</th><th>Количество студентов</th><th></th><th></th></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Teacher_name</td>
+            <td>@item.Number_of_students</td>
+            <td>
+                <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id">Изменить</a>
+            </td>
+            <td>
+                <form asp-controller="Home" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<p><a asp-action="Create">Создать учебную группу</a></p>

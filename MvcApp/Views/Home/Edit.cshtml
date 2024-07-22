@@ -1,0 +1,31 @@
+﻿@model MvcApp.Models.UchGroupe
+
+<h2>Редактировать учебную группу</h2>
+<h3>Учебные группы > Редактировать учебную группу</h3>
+<form asp-action="edit" asp-controller="home" asp-route-id="@Model.Id">
+    <p>
+        <td>Преподаватель: </td><td>@Model.Teacher_name</td>
+    </p>
+    <p>
+        <label asp-for="Name">Название учебной группы</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <input type="submit" value="Сохранить изменения" />
+    </p>
+    <table class="table">
+        <tr><th>Студент</th><th>Организация</th><th></th></tr>
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <form asp-controller="Home" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                        <input type="submit" value="Удалить" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <a asp-action="AddStudent" asp-controller="Home" asp-route-id="@Model.Id">Добавить студента</a>
+</form>

@@ -1,0 +1,23 @@
+﻿@model MvcApp.Models.UchGroupe
+
+<h2>Добавить студента в учебную группу</h2>
+<h3>Учебная группа > Добавить студента в учебную группу</h3>
+<td>Учебная группа: </td>
+<td>@Model.Name</td>
+<td>Преподаватель: </td>
+<td>@Model.Teacher_name</td>
+<form asp-action="addstudent" asp-controller="home">
+    @using (Html.BeginForm("AddStudent", "HomeController", FormMethod.Post))
+    {
+        <h2>Select Organization:</h2>
+        @Html.DropDownList("Organisations", ViewBag.OrganisationsList as SelectList, "Select Organization")
+
+        @if (Model != null)
+        {
+            <h2>Select Student:</h2>
+            @Html.DropDownListFor(model => model.Students, new SelectList(Model.Students, "Id", "Name"), "Select Student")
+        }
+
+        <input type="submit" value="Save UchGroup" />
+    }
+</form>
